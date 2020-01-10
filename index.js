@@ -5,7 +5,7 @@ console.log('Bot has been started... ')
 
 const bot = new Telegram(TOKEN, {
     polling: {
-        interval: 300,
+        interval: 200,
         autoStart: true,
         params: {
             timeout: 10
@@ -14,5 +14,5 @@ const bot = new Telegram(TOKEN, {
 })
 
 bot.on('message', msg => {
-    bot.sendMessage(msg.chat.id, 'Assalomu Aleykum Hurmatli Foydalanuvchi Biz sizga Xizmat qilishdan Mamnunmiz!')
+    bot.sendMessage(msg.chat.id, 'Assalomu Aleykum Hurmatli Foydalanuvchi Biz sizga Xizmat qilishdan Mamnunmiz!. Hurmat bilan MOHIRBEK')
 })
