@@ -14,5 +14,5 @@ const bot = new Telegram(TOKEN, {
 })
 
 bot.on('message', msg => {
-    bot.sendMessage(msg.chat.id, 'I am alive!')
+    bot.sendMessage(msg.chat.id, 'Assalomu Aleykum Hurmatli Foydalanuvchi Biz sizga Xizmat qilishdan Mamnunmiz!')
 })
