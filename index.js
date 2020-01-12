@@ -14,15 +14,15 @@ const bot = new Telegram(TOKEN, {
     }
 })
 
-bot.on('message', msg => {
+
+bot.onText(/\/start/, msg => {
     const { id } = msg.chat
 
-    if (msg.text.toLowerCase() === 'salom') {
-        bot.sendMessage(id, ${msg.from.first_name})
-    }else {
-        bot.sendMessage(id, debug(msg))
-    }
-
+    bot.sendMessage(id, debug(msg))
 })
 
+bot.onText(/\/lucky (.+)/, (msg, [sourse, match]) => {
+    const { id } = msg.chat
 
+    bot.sendMessage(id, debug(match))
+})
