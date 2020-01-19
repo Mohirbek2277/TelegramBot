@@ -14,15 +14,41 @@ const bot = new Telegram(TOKEN, {
     }
 })
 
+bot.on('message', msg => {
+    const chatId = msg.chat.id
 
-bot.onText(/\/start/, msg => {
-    const { id } = msg.chat
+    if (msg.text === 'Закрыть') {
+        bot.sendMessage(chatId, 'Klaviyaturani yopish', {
+            reply_makup: {
+                remove_keyboard: true
+            }
+        })
+    }else if (msg.text === 'Ответить'){
+        bot.sendMessage(chatId, 'Klaviyaturani ochish', {
+            reply_makup: {
+                force_reply: true
+            }
+        })
+    }else {
+        bot.sendMessage(chatId, 'Tegishli bo`limni tanlang! 👇', {
+            reply_markup: {
+                keyboard: [
 
-    bot.sendMessage(id, debug(msg))
+                    ['Ответить', 'Закрыть'],
+                    ['Mohirbek'],
+                    ['Qiwi Hamyon', 'WebMoney', 'Яндекс'],
+                    ['Admin', 'Ishonchli to`lov', '1xBet', 'Rubl Kursi'],
+                    ['Games 🎲', 'Bitcoin Trade', '942-17 Group', 'UbTUIT']
+                ]
+
+            }
+        })
+    }
+
 })
 
-bot.onText(/\/lucky (.+)/, (msg, [sourse, match]) => {
-    const { id } = msg.chat
-
-    bot.sendMessage(id, debug(match))
 })
+
+
+
+
