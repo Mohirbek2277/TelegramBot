@@ -1,6 +1,7 @@
 const Telegram = require('node-telegram-bot-api')
+const fs = require('fs')
 const debug = require('./helpers')
-const TOKEN = '1002372864:AAHl6rFV5gTauQQd085DlkkC7wQOImP3MSQ'
+const TOKEN = '978695376:AAGCfCMajQW9s70mzYcJcBIRPL9FAnjzLRA'
 
 console.log('Bot Ishlap Boshlodi... ')
 
@@ -14,116 +15,214 @@ const bot = new Telegram(TOKEN, {
     }
 })
 
+//---------------------------------------------------------------------------
+bot.on('message', msg => {
+
+    const chatid = msg.chat.id
+
+    if (msg.text === '📱Telefonlar'){
+        bot.sendMessage(chatid, 'Telefonni tanlang👇🏻', {
+            reply_markup: {
+                inline_keyboard
+            }
+        })
+    }
+    else if (msg.text === '📱Telefonlar'){
+        bot.sendMessage(chatid, 'Telefonni tanlang👇🏻', {
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'Samsung',
+                            callback_data: 'samsung'
+                        }
+                    ],
+                    [
+                        {
+                            text: 'Xiaomi-Redmi',
+                            callback_data: 'Redmi'
+                        }
+                    ]
+                ]
+            }
+        })
+    }
+
+    else if (msg.text === '💻Notebook'){
+        bot.sendMessage(chatId, 'Noutbukni tanlang👇🏻', {
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: 'ASUS',
+                            callback_data: 'ASUS'
+                        }
+                    ],
+                    [
+                        {
+                            text: 'ACER',
+                            callback_data: 'ACER'
+                        }
+                    ]
+                ]
+            }
+        })
+    }
+
+    bot.sendMessage(chatid, 'Texno Bozorga Xush kelibsiz!\nIltimos kerakli bo`limni tanlashingizni so`rayman👇🏻', {
+        reply_markup: {
+            keyboard: [
+                ['📱Telefonlar', '💻Notebook', '🖥Televizor'],
+                ['🧹Chang yutkich', 'Dazmollar','Muzlatkich', 'Konditsioner'],
+                ['📞Bizga Murojaat',
+                    {
+                        text: '📃Yangiliklar',
+                                            }]
+            ]
+        }
+    })
+
+})
+//----------------------------------------------------------------------------
 const inline_keyboard = [
     [
         {
-            text: '1 - Bo`lim',
-            callback_data: '1'
+            text: 'Note 10+',
+            callback_data: 'note10+'
         },
         {
-            text: '2 - Bo`lim',
-            callback_data: '2'
+            text: 'S10+',
+            callback_data: 'S10+'
+        },
+        {
+            text: 'A8 2018',
+            callback_data: 'A82018'
         }
     ],
     [
         {
-            text: 'HUMO Kartalar',
-            callback_data: '3'
+            text: 'A70',
+            callback_data: 'A70'
         },
         {
-            text: 'Naqd Pul Olish',
-            callback_data: '4'
+            text: 'A50 (black, blue)',
+            callback_data: 'A50'
         },
         {
-            text: 'Yordam',
-            url: 'https://algo.ubtuit.uz'
+            text: 'A30 S (64GB)',
+            callback_data: 'A3064'
         }
     ],
     [
         {
-            text: 'Yopish: Close',
+            text: 'Note 10',
+            callback_data: 'note10'
+        },
+        {
+            text: 'S10',
+            callback_data: 'S10'
+        },
+        {
+            text: 'A80',
+            callback_data: 'A80'
+        }
+    ],
+    [
+        {
+            text: 'A20 S',
+            callback_data: 'A20S'
+        },
+        {
+            text: 'A10 S',
+            callback_data: 'A10S'
+        },
+        {
+            text: 'J2 Core',
+            callback_data: 'J2Core'
+        }
+    ],
+    [
+        ,
+        {
+            text: 'A30 S (32GB)',
+            callback_data: 'A3032'
+        },
+        {
+            text: 'CLOSE',
             callback_data: 'delete'
         }
     ]
 ]
 
-//------------------------------------------------------------//
+
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------
+
+const Telefonlar = [
+        [
+            {
+                text: 'Samsung',
+                callback_data: 'samsung'
+            },
+            {
+                text: 'Apple IPhone',
+                callback_data: 'iphone'
+            },
+            {
+                text: 'Xiaomi-Redmi',
+                callback_data: 'redmi'
+            },
+            {
+                text: 'Huawei',
+                callback_data: 'huawei'
+            }
+        ]
+]
+
+
+//----------------------------------------------------------------------------
 
 bot.on('callback_query', query => {
 
-    const { chat, message_id, text } = query.message
+    const  { chat, message_id, text } = query.message
 
     switch (query.data){
-        case '1':
-            bot.sendMessage(chat.id, 'Bu bo`limda Siz, \nOmad chaqirish,\nOmad Ketkazish,\nOmad nimaligi Haqida o`rganib olish imkoniyatiga ega bo`lasiz!')
+        case 'samsung':
+            bot.sendMessage(chat.id, chat.id, 'Iphone ning Telefonlari', {
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+                            {
+                                text: 'Iphone 6',
+                                callback_data: 'iphone6'
+                            },
+                            {
+                                text: 'Iphone X',
+                                callback_data: 'iphonex'
+                            },
+                            {
+                                text: ''
+                            }
+                        ]
+                    ]
+                }
+            })
             break
-        case '2':
-            bot.sendMessage(chat.id, 'nvxjdnibhidrnhuvgnhsreiuhgi xndhigh ihdkgixlhuzldh lunlginh uidrhnvogsi rhgsnivzhg hralgziug')
+
+        case 'iphone':
+            bot.sendMessage(chat.id, 'I fon bo`limi')
             break
-        case '3':
-            bot.sendMessage(chat.id, '"HUMO" Kartalariga o`tishingizni tavsiya qilamiz, Chunki Uzcart tizimidagi kabi 1% uslugasi yuq!')
-            break
-        case '4':
-            bot.sendMessage(chat.id, 'Naqd pul olish olish uchun Banklarning filliallari yani Bankomatlari orqali Plastik Kartalarinnginzdagi elektron summalarni naqd ko`rinishda qabul qilishingiz mumkin.')
-            break
+
     }
+
     bot.answerCallbackQuery({
         callback_query_id: query.id
     })
-
 })
 
-//------------------------------------------------------------//
-bot.on('message', msg => {
-
-    const chatid = msg.chat.id
-
-    if (msg.text === 'Dasturchi haqida'){
-        bot.sendMessage(chatid, `Salom, HURMATLI ${msg.from.first_name}!.\nMen Ro'zmetov Mohirbek Toshkent Axborot Texnologiyalari Universiteti Urganch Filliali talabasiman. \nBu Botni men Python Dasturlash Tili asosida Yaratdim.`)
-    }
-    else if (msg.text === '942-17'){
-        bot.sendMessage(chatid, `21 ta talabadan iborat bo'lgan TaTU UF ning erkatoy guruppasi hisoblanadi.\nBu yerda Guruh rahbari Quronboyev Akbar domla\nGuruh Sardori esa Nurmatov Nurmuhammad.`)
-    }
-    else if (msg.text === 'Omad'){
-        bot.sendMessage(chatid, `Tog'risi bu narsa harkim uchun har xil beriladi`)
-    }
-    else if (msg.text === 'Omadsizlik'){
-        bot.sendMessage(chatid, `Salom, HURMATLI ${msg.from.first_name}!.\nMen Ro'zmetov Mohirbek Toshkent Axborot Texnologiyalari Universiteti Urganch Filliali talabasiman. \nBu Botni men Python Dasturlash Tili asosida Yaratdim.`)
-    }
-
-    bot.sendMessage(chatid, 'Omad bo`limlariga Xush kelibsiz! Bu Yerda Siz Misli ko`rinmagan Boyliklar to`plash imkoniyatiga ega bo`lasiz.', {
-        reply_markup: {
-            keyboard: [
-                ['Dasturchi haqida'],
-                [{
-                    text: 'TATU UF',
-                    request_location: true
-                }, '942-17'],
-                ['Mohirbek', 'Omad', 'Omadsizlik'],
-
-            ]
-
-
-        }
-    })
-
-})
-
-//----------------------------------------------------------//
-
-bot.onText(/\/start/, (msg, [source, match]) => {
-
-    const chatId = msg.chat.id
-
-    bot.sendMessage(chatId, 'Bo`limlar......', {
-        reply_makup: {  inline_keyboard  }
-    })
-})
-
-//-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/--/-/-/-/-/-/-/-/-/-/-//
-
-bot.onText(/\/lucky/, (msg, [source, match])=> {
-    bot.sendMessage(msg.chat.id, 'lucky - Omad Bo`limiga xush Kelibsiz!', {
-        reply_markup: { inline_keyboard }
-    })
-})
+//----------------------------------------------------------------------------
