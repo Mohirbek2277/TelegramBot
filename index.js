@@ -1,5 +1,4 @@
 const Telegram = require('node-telegram-bot-api')
-const fs = require('fs')
 const debug = require('./helpers')
 const TOKEN = '978695376:AAGCfCMajQW9s70mzYcJcBIRPL9FAnjzLRA'
 
@@ -8,7 +7,6 @@ console.log('Bot Ishlap Boshlodi... ')
 const bot = new Telegram(TOKEN, {
     polling: {
         interval: 400,
-        autoStart: true,
         params: {
             timeout: 10
         }
@@ -20,14 +18,14 @@ bot.on('message', msg => {
 
     const chatid = msg.chat.id
 
-    if (msg.text === '📱Telefonlar'){
+    if (msg.text === 'Mobil Telefonlar'){
         bot.sendMessage(chatid, 'Telefonni tanlang👇🏻', {
             reply_markup: {
                 inline_keyboard
             }
         })
     }
-    else if (msg.text === '📱Telefonlar'){
+    /*else if (msg.text === '📱Telefonlar'){
         bot.sendMessage(chatid, 'Telefonni tanlang👇🏻', {
             reply_markup: {
                 inline_keyboard: [
@@ -51,33 +49,17 @@ bot.on('message', msg => {
     else if (msg.text === '💻Notebook'){
         bot.sendMessage(chatId, 'Noutbukni tanlang👇🏻', {
             reply_markup: {
-                inline_keyboard: [
-                    [
-                        {
-                            text: 'ASUS',
-                            callback_data: 'ASUS'
-                        }
-                    ],
-                    [
-                        {
-                            text: 'ACER',
-                            callback_data: 'ACER'
-                        }
-                    ]
-                ]
+               inline_keyboard
             }
         })
-    }
+    }*/
 
     bot.sendMessage(chatid, 'Texno Bozorga Xush kelibsiz!\nIltimos kerakli bo`limni tanlashingizni so`rayman👇🏻', {
         reply_markup: {
             keyboard: [
-                ['📱Telefonlar', '💻Notebook', '🖥Televizor'],
-                ['🧹Chang yutkich', 'Dazmollar','Muzlatkich', 'Konditsioner'],
-                ['📞Bizga Murojaat',
-                    {
-                        text: '📃Yangiliklar',
-                                            }]
+                ['Maishiy Texnika', 'Mobil Telefonlar'],
+                ['Aksessuarlar va oshxona buyumlari', 'Qidirish'],
+                ['Kredit ma`lumoti', 'Biz bilan Murojaat']
             ]
         }
     })
