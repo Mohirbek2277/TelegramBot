@@ -1,9 +1,8 @@
 const Telegram = require('node-telegram-bot-api')
 
-const fs = require('fs')
 const TOKEN = '978695376:AAGCfCMajQW9s70mzYcJcBIRPL9FAnjzLRA'
 
-console.log('Bot ishlap boshlodi... ')
+console.log('Bot has been started ... ')
 
 const bot = new Telegram(TOKEN, {
     polling: {
@@ -18,7 +17,6 @@ const bot = new Telegram(TOKEN, {
 //---------------------------------------------------------------------------
 bot.on('message', msg => {
 
-    console.log(msg.from.first_name, ' Islatmoqda')
     const chatid = msg.chat.id
 
     if (msg.text === 'Mobil Telefonlar'){
