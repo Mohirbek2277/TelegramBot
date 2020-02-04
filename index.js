@@ -1,12 +1,14 @@
 const Telegram = require('node-telegram-bot-api')
-const debug = require('./helpers')
+
+const fs = require('fs')
 const TOKEN = '978695376:AAGCfCMajQW9s70mzYcJcBIRPL9FAnjzLRA'
 
-console.log('Bot Ishlap Boshlodi... ')
+console.log('Bot ishlap boshlodi... ')
 
 const bot = new Telegram(TOKEN, {
     polling: {
         interval: 400,
+        autoStart: true,
         params: {
             timeout: 10
         }
@@ -16,16 +18,10 @@ const bot = new Telegram(TOKEN, {
 //---------------------------------------------------------------------------
 bot.on('message', msg => {
 
+    console.log(msg.from.first_name, ' Islatmoqda')
     const chatid = msg.chat.id
 
     if (msg.text === 'Mobil Telefonlar'){
-        bot.sendMessage(chatid, 'Telefonni tanlang👇🏻', {
-            reply_markup: {
-                inline_keyboard
-            }
-        })
-    }
-    /*else if (msg.text === '📱Telefonlar'){
         bot.sendMessage(chatid, 'Telefonni tanlang👇🏻', {
             reply_markup: {
                 inline_keyboard: [
@@ -33,28 +29,70 @@ bot.on('message', msg => {
                         {
                             text: 'Samsung',
                             callback_data: 'samsung'
+                        },
+                        {
+                            text: 'Huawei',
+                            callback_data: 'huawei'
                         }
                     ],
                     [
                         {
+                            text: 'Apple IPhone',
+                            callback_data: 'iphone'
+                        },
+                        {
                             text: 'Xiaomi-Redmi',
-                            callback_data: 'Redmi'
+                            callback_data: 'redmi'
                         }
                     ]
                 ]
             }
         })
-    }
+        bot.on('callback_query', query => {
 
-    else if (msg.text === '💻Notebook'){
-        bot.sendMessage(chatId, 'Noutbukni tanlang👇🏻', {
+            const {chat, message_id, text} = query.message
+
+            switch (query.data){
+                case 'samsung':
+                    bot.forwardMessage(chat.id, chat.id, message_id)
+                    break
+            }
+
+        })
+
+    }
+    else if (msg.text === 'Maishiy Texnika'){
+
+        bot.sendMessage(chatid, 'Texnika buyumini Tanlang👇🏻', {
             reply_markup: {
-               inline_keyboard
+                inline_keyboard : [
+                    [
+                        {
+                            text: 'Televizor',
+                            callback_data: 'televizor'
+                        },
+                        {
+                            text: 'Muzlatkich',
+                            callback_data: 'muzlatkich'
+                        }
+                    ],
+                    [
+                        {
+                            text: 'Kir Yuvish mashinasi',
+                            callback_data: 'kir'
+                        },
+                        {
+                            text: 'Orqaga⤴️',
+                            callback_data: 'orqaga'
+                        }
+                    ]
+                ]
+
             }
         })
-    }*/
+    }
 
-    bot.sendMessage(chatid, 'Texno Bozorga Xush kelibsiz!\nIltimos kerakli bo`limni tanlashingizni so`rayman👇🏻', {
+    bot.sendMessage(chatid, '',{
         reply_markup: {
             keyboard: [
                 ['Maishiy Texnika', 'Mobil Telefonlar'],
@@ -66,91 +104,22 @@ bot.on('message', msg => {
 
 })
 //----------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------
+
 const inline_keyboard = [
-    [
-        {
-            text: 'Note 10+',
-            callback_data: 'note10+'
-        },
-        {
-            text: 'S10+',
-            callback_data: 'S10+'
-        },
-        {
-            text: 'A8 2018',
-            callback_data: 'A82018'
-        }
-    ],
-    [
-        {
-            text: 'A70',
-            callback_data: 'A70'
-        },
-        {
-            text: 'A50 (black, blue)',
-            callback_data: 'A50'
-        },
-        {
-            text: 'A30 S (64GB)',
-            callback_data: 'A3064'
-        }
-    ],
-    [
-        {
-            text: 'Note 10',
-            callback_data: 'note10'
-        },
-        {
-            text: 'S10',
-            callback_data: 'S10'
-        },
-        {
-            text: 'A80',
-            callback_data: 'A80'
-        }
-    ],
-    [
-        {
-            text: 'A20 S',
-            callback_data: 'A20S'
-        },
-        {
-            text: 'A10 S',
-            callback_data: 'A10S'
-        },
-        {
-            text: 'J2 Core',
-            callback_data: 'J2Core'
-        }
-    ],
-    [
-        ,
-        {
-            text: 'A30 S (32GB)',
-            callback_data: 'A3032'
-        },
-        {
-            text: 'CLOSE',
-            callback_data: 'delete'
-        }
-    ]
-]
-
-
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-
-const Telefonlar = [
         [
             {
                 text: 'Samsung',
                 callback_data: 'samsung'
             },
+            {
+                text: 'Huawei',
+                callback_data: 'huawei'
+            }
+        ],
+        [
             {
                 text: 'Apple IPhone',
                 callback_data: 'iphone'
@@ -159,52 +128,9 @@ const Telefonlar = [
                 text: 'Xiaomi-Redmi',
                 callback_data: 'redmi'
             },
-            {
-                text: 'Huawei',
-                callback_data: 'huawei'
-            }
         ]
 ]
-
-
-//----------------------------------------------------------------------------
-
-bot.on('callback_query', query => {
-
-    const  { chat, message_id, text } = query.message
-
-    switch (query.data){
-        case 'samsung':
-            bot.sendMessage(chat.id, chat.id, 'Iphone ning Telefonlari', {
-                reply_markup: {
-                    inline_keyboard: [
-                        [
-                            {
-                                text: 'Iphone 6',
-                                callback_data: 'iphone6'
-                            },
-                            {
-                                text: 'Iphone X',
-                                callback_data: 'iphonex'
-                            },
-                            {
-                                text: ''
-                            }
-                        ]
-                    ]
-                }
-            })
-            break
-
-        case 'iphone':
-            bot.sendMessage(chat.id, 'I fon bo`limi')
-            break
-
-    }
-
-    bot.answerCallbackQuery({
-        callback_query_id: query.id
-    })
+//----------------------------------------------------------------------------------------------------------
+bot.onText(/\/pic/, msg => {
+    bot.setPhoto(msg.chat.id, fs.readFileSync(__dirname + '/01.jpg'))
 })
-
-//----------------------------------------------------------------------------
