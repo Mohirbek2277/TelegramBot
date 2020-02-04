@@ -1,6 +1,6 @@
 const Telegram = require('node-telegram-bot-api')
 
-const TOKEN = '978695376:AAGCfCMajQW9s70mzYcJcBIRPL9FAnjzLRA'
+const TOKEN = ''
 
 console.log('Bot has been started ... ')
 
